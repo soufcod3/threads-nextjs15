@@ -8,27 +8,27 @@ import Image from "next/image";
 import ThreadsTab from "@/components/shared/ThreadsTab";
 
 async function Page({ params }: { params: { id: string } }) {
-    const user = await currentUser();
-    if (!user) return null;
+  const user = await currentUser();
+  if (!user) return null;
 
-    const userId = params.id;
-    if (!userId) return null;
+  const userId = params.id;
+  if (!userId) return null;
 
-    const userInfo = await fetchUser(params.id);
-    if (!userInfo?.onboarded) redirect("/onboarding");
+  const userInfo = await fetchUser(params.id);
+  if (!userInfo?.onboarded) redirect("/onboarding");
 
-    return (
-        <section>
-            <ProfileHeader
-                accountId={userInfo.id}
-                authUserId={user.id}
-                name={userInfo.name}
-                username={userInfo.username}
-                imgUrl={userInfo.image}
-                bio={userInfo.bio}
-            />
+  return (
+    <section>
+      <ProfileHeader
+        accountId={userInfo.id}
+        authUserId={user.id}
+        name={userInfo.name}
+        username={userInfo.username}
+        imgUrl={userInfo.image}
+        bio={userInfo.bio}
+      />
 
-<div className='mt-9'>
+      <div className='mt-9'>
         <Tabs defaultValue='threads' className='w-full'>
           <TabsList className='tab'>
             {profileTabs.map((tab) => (
@@ -66,8 +66,8 @@ async function Page({ params }: { params: { id: string } }) {
           ))}
         </Tabs>
       </div>
-        </section>
-    )
+    </section>
+  )
 }
 
 export default Page;
